@@ -122,25 +122,3 @@ Created on April 7, 2025
 
 
 
-### Instructions
-1. **Copy and Paste**:
-   - Copy the entire markdown block above.
-   - Go to your GitHub repository (e.g., `https://github.com/yourusername/forex_prediction`).
-   - Click on `README.md` (or create it if it doesn’t exist via “Add file” > “Create new file”).
-   - Paste the content and commit (e.g., “Add README”).
-   - The short description at the top will automatically appear as the repo description if you set it in the repo settings, or you can manually add it there.
-
-2. **Update Placeholder**:
-   - Replace `yourusername` with your actual GitHub username in the `git clone` URL.
-
-3. **Push Local Changes (if not already done)**:
-   ```powershell
-   cd E:\1404\predictFX\forex_prediction_py
-   git init
-   git add .
-   git commit -m "Initial commit with forex prediction pipeline and README"
-   git remote add origin https://github.com/yourusername/forex_prediction.git
-   git branch -M main
-   git push -u origin main
-   ```
-
