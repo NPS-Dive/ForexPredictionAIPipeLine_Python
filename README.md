@@ -39,39 +39,4 @@ Run: `python main.py`
 MIT License
 
 ## Full Map and Path of the Solution
-forex_prediction/
-├── data/                    # Directory for raw and processed data (auto-generated)
-│   ├── m1/                  # Example: M1 timeframe data
-│   ├── m5/
-│   ├── m15/
-│   ├── m30/
-│   ├── h1/
-│   ├── d1/
-│   └── w1/
-├── domain/                  # Business logic layer
-│   ├── models/
-│   │   ├── short_gru.py     # GRU model for short timeframes
-│   │   ├── medium_cnn_lstm.py  # CNN-LSTM model for medium timeframes
-│   │   ├── long_lstm.py     # LSTM model for long timeframes
-│   │   └── xgboost_refiner.py  # XGBoost model for refining predictions
-│   ├── monte_carlo.py       # Monte Carlo risk simulation
-│   └── signals.py           # Trade signal generation
-├── application/             # Use case layer
-│   ├── short_predictor.py   # Short-term prediction orchestrator
-│   ├── medium_predictor.py  # Medium-term prediction orchestrator
-│   └── long_predictor.py    # Long-term prediction orchestrator
-├── infrastructure/          # External interactions layer
-│   ├── data_loaders/
-│   │   ├── duka_loader.py   # Dukascopy price data loader
-│   │   └── macro_loader.py  # FRED macro data loader
-│   ├── feature_engineers/
-│   │   ├── short_features.py  # Features for short timeframes
-│   │   ├── medium_features.py # Features for medium timeframes
-│   │   └── long_features.py   # Features for long timeframes
-│   └── utils.py             # Utility functions
-├── presentation/            # User interface layer
-│   └── cli.py               # Command-line interface
-├── config.py                # Centralized configuration
-├── main.py                  # Application entry point
-├── requirements.txt         # Python dependencies
-└── README.md                # Project documentation
+- [Project Map](MAP.md): Detailed directory structure and file purposes.
