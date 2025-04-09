@@ -18,7 +18,7 @@ A modular forex prediction system with distinct pipelines for short (M1-M30), me
 
 ## Installation
 1. Install Python 3.11.9: [python.org](https://www.python.org/downloads/release/python-3119/)
-2. Clone: `git clone https://github.com/yNPS-Dive/ForexPredictionAIPipeLine_Python.git`
+2. Clone: `git clone https://github.com/NPS-Dive/ForexPredictionAIPipeLine_Python.git`
 3. Virtual Env: `python -m venv venv; .\venv\Scripts\Activate.ps1`
 4. Install: `pip install -r requirements.txt`
 
