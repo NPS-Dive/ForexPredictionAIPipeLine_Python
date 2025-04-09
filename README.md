@@ -1,124 +1,77 @@
 # Forex Prediction Pipeline
 
-**GitHub Description**: Predict EUR/USD trends using a CNN-LSTM + XGBoost model with Monte Carlo risk analysis. Fetches historical data from Dukascopy, applies technical indicators, and generates trade signals. Built with Python 3.11, TensorFlow, and Clean Architecture.
+**GitHub Description:** Predict trends for EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/CHF, and XAU/USD across timeframes from 1 minute to weekly. Uses hybrid pipelines (GRU, CNN-LSTM, LSTM + XGBoost) with Monte Carlo risk analysis. Built with Python 3.11, adhering to SOLID and Clean Architecture.
 
 ---
 
-A machine learning pipeline to predict EUR/USD forex trends and generate trade signals using historical data from Dukascopy. This project combines a hybrid CNN-LSTM model, XGBoost refinement, and Monte Carlo simulation for robust predictions and risk assessment.
+A modular forex prediction system with distinct pipelines for short (M1-M30), medium (H1), and long (D1-W1) timeframes, supporting multiple currency pairs and user selection via CLI.
 
 ## Features
-- **Data Source**: Fetches 1-hour EUR/USD data from Dukascopy via `duka`.
-- **Preprocessing**: Adds technical indicators (RSI, MACD, Bollinger Bands) using `ta-lib`.
-- **Model**: 
-  - CNN-LSTM for trend prediction.
-  - XGBoost for refining predictions and generating Buy/Sell/Hold signals.
-- **Risk Analysis**: Monte Carlo simulation for probability estimates.
-- **Architecture**: Follows SOLID principles and Clean Architecture.
-
-## Project Structure
-```
-forex_prediction/
-├── data/                    # Raw and processed data
-│   ├── eur_usd_raw.csv      # Downloaded from Dukascopy
-│   └── eur_usd_processed.csv # Processed with features
-├── domain/                  # Business logic
-│   ├── cnn_lstm.py          # CNN-LSTM model
-│   ├── xgboost_model.py     # XGBoost refinement
-│   └── monte_carlo.py       # Monte Carlo simulation
-├── application/             # Use cases
-│   └── predict_trend.py     # Main pipeline logic
-├── infrastructure/          # External interactions
-│   ├── data_loader.py       # Dukascopy data fetching
-│   └── feature_engineer.py  # Feature extraction
-├── main.py                  # Entry point
-├── requirements.txt         # Dependencies
-└── README.md                # This file
-```
-
-## Prerequisites
-- **Python**: 3.11.9 (recommended for TensorFlow compatibility).
-- **Windows**: Tested on Windows with PowerShell.
-- **Dependencies**: Listed in `requirements.txt`.
+- **Pairs:** EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/CHF, XAU/USD.
+- **Timeframes:** M1, M5, M15, M30, H1, D1, W1.
+- **Pipelines:**
+  - Short: GRU + XGBoost for rapid trades.
+  - Medium: CNN-LSTM + XGBoost for hourly trends.
+  - Long: LSTM + XGBoost with macro data for long-term trends.
+- **Data:** Dukascopy (price), FRED (macro).
+- **Architecture:** SOLID, Clean Architecture.
 
 ## Installation
-1. **Install Python 3.11.9**:
-   - Download from [python.org](https://www.python.org/downloads/release/python-3119/).
-   - Install with "Add Python to PATH" checked.
-
-2. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/forex_prediction.git
-   cd forex_prediction
-   ```
-
-3. **Set Up Virtual Environment**:
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
-
-4. **Install Dependencies**:
-   ```powershell
-   pip install -r requirements.txt
-   ```
-   - If `ta-lib` fails:
-     - Download `TA_Lib-0.4.28-cp311-cp311-win_amd64.whl` from [GitHub](https://github.com/mrjbq7/ta-lib).
-     - Install: `pip install path\to\TA_Lib-0.4.28-cp311-cp311-win_amd64.whl`.
-
-5. **Verify TensorFlow**:
-   ```powershell
-   python -c "import tensorflow as tf; print(tf.__version__)"
-   ```
+1. Install Python 3.11.9: [python.org](https://www.python.org/downloads/release/python-3119/)
+2. Clone: `git clone https://github.com/yNPS-Dive/ForexPredictionAIPipeLine_Python.git`
+3. Virtual Env: `python -m venv venv; .\venv\Scripts\Activate.ps1`
+4. Install: `pip install -r requirements.txt`
 
 ## Usage
-1. **Run the Pipeline**:
-   ```powershell
-   python main.py
-   ```
-   - Downloads EUR/USD data for 2023.
-   - Trains models and outputs predictions, trade signals, and Monte Carlo results.
+Run: `python main.py`
+- Enter start and end dates (or press Enter for defaults).
+- Select a pair and timeframe from the menu.
 
-2. **Example Output**:
-   ```
-   Data downloaded and processed. Shape: (..., 20, 6)
-   Models trained.
-   CNN-LSTM Prediction: 1.12345
-   XGBoost Refined Prediction: 1.12350
-   Trade Signal: Buy
-   Monte Carlo Results: {'median': 1.12348, 'lower_bound': 1.12000, 'upper_bound': 1.12600, 'success_prob': 0.65}
-   ```
-
-## Customization
-- **Date Range**: Edit `start_date` and `end_date` in `predict_trend.py`.
-- **Symbol**: Change `symbol` in `predict_trend.py` (e.g., "GBPUSD").
-- **Model Tuning**: Adjust `epochs`, `sequence_length`, or thresholds in respective files.
-
-## Troubleshooting
-- **TensorFlow Warnings**: Normal optimization messages. Suppress with:
-  ```powershell
-  $env:TF_ENABLE_ONEDNN_OPTS = "0"
-  ```
-- **Duka Errors**: Ensure internet access and correct `data` folder permissions.
-- **TA-Lib**: Install manually if `pip` fails.
-
-## Dependencies
-- `pandas`: Data manipulation.
-- `numpy`: Numerical operations.
-- `tensorflow`: CNN-LSTM model.
-- `xgboost`: Prediction refinement.
-- `scikit-learn`: Utilities.
-- `ta-lib`: Technical indicators.
-- `duka`: Dukascopy data fetcher.
-
-## Contributing
-Feel free to fork, submit issues, or PRs to enhance the pipeline (e.g., backtesting, real-time data).
+## Structure
+- `data/`: Stores raw and processed data by timeframe.
+- `domain/`: Pure business logic (models, signals).
+- `application/`: Use cases (predictors).
+- `infrastructure/`: External interactions (data, features).
+- `presentation/`: CLI for user input.
+- `config.py`: Centralized configuration.
 
 ## License
-MIT License - free to use and modify.
+MIT License
 
----
-Created on April 7, 2025
-```
-
-
-
+## Full Map and Path of the Solution
+forex_prediction/
+├── data/                    # Directory for raw and processed data (auto-generated)
+│   ├── m1/                  # Example: M1 timeframe data
+│   ├── m5/
+│   ├── m15/
+│   ├── m30/
+│   ├── h1/
+│   ├── d1/
+│   └── w1/
+├── domain/                  # Business logic layer
+│   ├── models/
+│   │   ├── short_gru.py     # GRU model for short timeframes
+│   │   ├── medium_cnn_lstm.py  # CNN-LSTM model for medium timeframes
+│   │   ├── long_lstm.py     # LSTM model for long timeframes
+│   │   └── xgboost_refiner.py  # XGBoost model for refining predictions
+│   ├── monte_carlo.py       # Monte Carlo risk simulation
+│   └── signals.py           # Trade signal generation
+├── application/             # Use case layer
+│   ├── short_predictor.py   # Short-term prediction orchestrator
+│   ├── medium_predictor.py  # Medium-term prediction orchestrator
+│   └── long_predictor.py    # Long-term prediction orchestrator
+├── infrastructure/          # External interactions layer
+│   ├── data_loaders/
+│   │   ├── duka_loader.py   # Dukascopy price data loader
+│   │   └── macro_loader.py  # FRED macro data loader
+│   ├── feature_engineers/
+│   │   ├── short_features.py  # Features for short timeframes
+│   │   ├── medium_features.py # Features for medium timeframes
+│   │   └── long_features.py   # Features for long timeframes
+│   └── utils.py             # Utility functions
+├── presentation/            # User interface layer
+│   └── cli.py               # Command-line interface
+├── config.py                # Centralized configuration
+├── main.py                  # Application entry point
+├── requirements.txt         # Python dependencies
+└── README.md                # Project documentation

@@ -7,3 +7,4 @@ ta-lib # Technical indicators (install separately)
 duka # Dukascopy data downloader
 
 # For ta-lib, see installation instructions: https://github.com/mrjbq7/ta-lib
+
